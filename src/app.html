@@ -3,10 +3,160 @@
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>	
+		<link rel="stylesheet" href="https://unpkg.com/mono-icons@1.0.5/iconfont/icons.css">	
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">%sveltekit.body%</div>
+		<div style="display: contents; position: relative;">%sveltekit.body%</div>
 	</body>
 </html>
+
+<style>
+	:root {
+		/* light mode */
+		--BG-LIGHT: #FAF9F6;
+		--TEXT-LIGHT: black;
+		--TEXT-ON-PRIMARY-LIGHT: white;
+
+		/* dark mode */
+		--BG-DARK: #121212;
+		--TEXT-DARK: white;
+		--TEXT-ON-PRIMARY-DARK: black;
+
+		/* globals */
+		--PRIMARY: #5B8F90;
+		--PRIMARY-DARKER: #355657;
+		--OVERLAY-COLOR: rgba(0, 0, 0, 0.8);
+		--NEUTRAL-COLOR: #808080;
+		--ERROR-COLOR: red;
+		/* adjusted by preferences */
+		--CURRENT-BG-COLOR: var(--BG-LIGHT);
+		--CURRENT-TEXT-COLOR: var(--TEXT-LIGHT);
+		--CURRENT-TEXT-ON-PRIMARY: var(--TEXT-ON-PRIMARY-LIGHT);
+
+
+	}
+
+	html {
+		height: 100vh;
+		overflow-x: hidden;
+		scroll-behavior: smooth;
+	}
+
+	body {
+		overflow-x: hidden;
+		position: relative;
+		font-family: "Inter";
+		font-size: 1em;
+		margin: 0;
+		padding: 0;
+		min-height: 100%;
+		min-width: 100%;
+
+		background-color: var(--BG-LIGHT);
+		color: var(--TEXT-LIGHT);
+		
+		transition: background-color 0.5s;
+		
+	}
+
+	body.dark-mode {
+		background-color: var(--BG-DARK);
+		color: var(--TEXT-DARK);
+
+		/* Adjust adjustable variables here */
+		--CURRENT-BG-COLOR: var(--BG-DARK);
+		--CURRENT-TEXT-COLOR: var(--TEXT-DARK);
+		--CURRENT-TEXT-ON-PRIMARY: var(--TEXT-ON-PRIMARY-DARK);
+	}
+
+	/* SCROLLBAR STYLE*/
+	/* width */
+	::-webkit-scrollbar {
+		width: 0.25rem;
+	}
+
+	/* Track */
+	::-webkit-scrollbar-track {
+	background: var(--CURRENT-BG-COLOR); 
+	}
+	
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+		background: var(--PRIMARY); 
+	}
+
+	/* GLOBALS */
+	@keyframes banner-anim {
+        from {
+            opacity: 0;
+            transform: translateX(-100px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+    }
+
+	.content-banner {
+		display: inline-block;
+        color: var(--PRIMARY);
+        font-size: 4em;
+        animation: banner-anim 0.8s ease-in-out 1;
+    }
+
+	.content-desc {
+		font-size: 1em;
+		margin: 1em 0;
+	}
+
+	@media only screen and (max-width: 600px) {
+		body {
+			font-size: 0.8em;
+		}
+
+        .content-banner {
+			font-size: 3em;
+		}
+    }
+
+	@keyframes shake {
+		0% {
+			transform: rotate(0deg);
+		}
+		25% {
+			transform: rotate(10deg);
+		}
+		50% {
+			transform: rotate(0deg);
+		}
+		75% {
+			transform: rotate(-10deg);
+		}
+		100% {
+			transform: rotate(0deg);
+		}
+	}
+
+	.shake {
+		display: inline-block;
+		animation: shake 0.5s ease-in-out 3;
+	}
+
+	.input-error {
+        border: 1px solid var(--ERROR-COLOR) !important;
+        color: var(--ERROR-COLOR);
+    }
+
+	a {
+		text-decoration: none;
+		color: var(--PRIMARY);
+	}
+
+	a:hover {
+		font-weight: bold;
+	}
+</style>

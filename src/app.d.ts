@@ -7,6 +7,12 @@ declare global {
 		// interface PageData {}
 		// interface Platform {}
 	}
+	namespace svelteHTML {
+		interface HTMLAttributes<T> {
+		  'on:viewportEnter'?: (event: CustomEvent) => void
+		  'on:viewportExit'?: (event: CustomEvent) => void
+		}
+	}
 }
 
 export {};
