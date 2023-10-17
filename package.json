@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "concurrently \"vite dev\" \"pocketbase_0.18.8_windows_amd64\\pocketbase.exe serve\"",
 		"build": "vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -15,6 +15,7 @@
 		"@sveltejs/kit": "^1.20.4",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
+		"concurrently": "^8.2.1",
 		"eslint": "^8.28.0",
 		"eslint-plugin-svelte": "^2.30.0",
 		"svelte": "^4.0.5",
@@ -28,6 +29,7 @@
 		"@types/d3": "^7.4.0",
 		"@types/topojson-client": "^3.1.2",
 		"d3": "^7.8.5",
+		"pocketbase": "^0.18.0",
 		"topojson": "^3.0.2",
 		"topojson-client": "^3.1.0"
 	}

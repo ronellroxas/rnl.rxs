@@ -1,16 +1,29 @@
+export type TextValidatorExtras = {
+    options: string[] | undefined
+    max: number | undefined
+}
+
 export class TextValidator {
     private flags: VALIDATOR_FLAGS[] = [];
-    private options: string[] | undefined;
     private constraints: TextConstraint[] = [];
     private failReasons: TextConstraint[] = [];
-    
-    addConstraint(flag: VALIDATOR_FLAGS, options: string[] | undefined = undefined) {
-        if (flag == VALIDATOR_FLAGS.OPTIONS && options == undefined) {
-            throw Error(`Flag "VALIDATOR_FLAGS.OPTIONS" requires you to pass a list of options`);
+    private extras: TextValidatorExtras = {
+        options: undefined,
+        max: undefined
+    }
+
+    addConstraints(flags: VALIDATOR_FLAGS[], extras: TextValidatorExtras) {
+        if (flags.includes(VALIDATOR_FLAGS.OPTIONS) && 
+            (extras.options == undefined || extras.options == null)) {
+                throw Error(`Flag "VALIDATOR_FLAGS.OPTIONS requires a "option" extra data.`);
+        }
+        if (flags.includes(VALIDATOR_FLAGS.MAX_CHARS) && 
+            (extras.max == undefined || extras.max == null)) {
+                throw Error(`Flag "VALIDATOR_FLAGS.MAX_CHARS requires a "max" extra data.`);
         }
 
-        this.flags.push(flag);
-        this.options = options;
+        this.flags = flags;
+        this.extras = extras;
     }
 
     private BuildConstraints() {
@@ -22,10 +35,13 @@ export class TextValidator {
     private mapValidatorFlag(flag: VALIDATOR_FLAGS): TextConstraint {
         switch(flag) {
             case VALIDATOR_FLAGS.OPTIONS: {
-                return new TextConstraintOptions(this.options!!);
+                return new TextConstraintOptions(this.extras.options!!);
             }
             case VALIDATOR_FLAGS.REQUIRED: {
                 return new TextConstraintRequired();
+            }
+            case VALIDATOR_FLAGS.MAX_CHARS: {
+                return new TextConstraintMaxLength(this.extras.max!!);
             }
         }
     }
@@ -80,7 +96,7 @@ class TextConstraintMaxLength extends TextConstraint {
     }
 
     validate(text: string): boolean {
-        return text.length > this.max;
+        return text.length <= this.max;
     }
 
     toString(): string {
@@ -112,5 +128,6 @@ class TextConstraintOptions extends TextConstraint {
 
 export enum VALIDATOR_FLAGS {
     REQUIRED,
-    OPTIONS
+    OPTIONS,
+    MAX_CHARS
 }

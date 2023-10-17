@@ -3,14 +3,12 @@
     import IntroSlidingPreviewComponent from "./IntroSlidingPreviewComponent.svelte";
     import WorldButton from "./WorldButton.svelte";
 
-    export let showWorld = false;
-
     let desc = "This is a personal portfolio of Ronell Roxas containing experiences, knowledge, hobbies, and other contact information.";
     let words = desc.split(" ");
 </script>
 
 <div id="intro-section">
-    <WorldButton showWorld={showWorld}/>
+    <WorldButton/>
     <span class="content-banner">Hello World!</span>
     <div class="content-desc">
         {#each words as word, i}

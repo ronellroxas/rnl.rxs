@@ -1,9 +1,10 @@
 <script lang="ts">
     import { bounceOut } from "svelte/easing";
     import { fade, scale } from "svelte/transition";
-    import viewport from "./useViewportAction";
+    import viewport from "./lazyLoading/useViewportAction";
+    import { viewStoreState } from "./store";
 
-    export let showWorld = false;
+    let showWorld = false;
 
     $: isScrolled = false;
     $: showTooltip = false;
@@ -11,6 +12,17 @@
     function toggleTooltip() {
         showTooltip = !showTooltip;
     }
+
+    viewStoreState.subscribe(({showWorldHi}) => {
+        showWorld = showWorldHi;
+    });
+
+    function toggleVisibility() {
+        viewStoreState.update((viewStoreState) => 
+            viewStoreState = { ...viewStoreState, showWorldHi: !showWorld }
+        )
+    }
+
 </script>
 
 <div
@@ -28,7 +40,7 @@
         class="world-button {isScrolled ? 'stick' : ''}"
         on:mouseenter={toggleTooltip}
         on:mouseleave={toggleTooltip}
-        on:click={() => { showWorld = true }}
+        on:click={toggleVisibility}
     >
         🌎
         {#if showTooltip}
@@ -90,6 +102,7 @@
     .world-tooltip {
         font-size: 1rem;
         background: var(--CURRENT-BG-COLOR);
+        color: var(--CURRENT-TEXT-COLOR);
     }
 
     .tooltip-hi {

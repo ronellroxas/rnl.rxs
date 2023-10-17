@@ -1,9 +1,16 @@
 <script lang="ts">
     import { blur } from "svelte/transition";
-    export let show = false;
+    import { viewStoreState } from "./store";
+    
+    let show = false;
+
+    viewStoreState.subscribe((viewStoreState) => {
+        show = viewStoreState.showSideMenu;
+    });
 
     function toggleMenu() {
-        show = !show;
+        viewStoreState.update((viewStoreState) => 
+        viewStoreState = {...viewStoreState, showSideMenu: !show})
     }
 </script>
 

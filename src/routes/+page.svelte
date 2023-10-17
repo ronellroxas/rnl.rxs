@@ -1,23 +1,37 @@
-<script>
+<script lang="ts">
+    // components
     import ContentSection from "$lib/ContentSection.svelte";
-    import LazyComponent from "$lib/LazyComponent.svelte";
+    import LazyComponent from "$lib/lazyLoading/LazyComponent.svelte";
     import MenuButton from "$lib/MenuButton.svelte";
     import SideMenu from "$lib/SideMenu.svelte";
+    import Snackbar from "$lib/snackbar/Snackbar.svelte";
     import ThemeToggler from "$lib/ThemeToggler.svelte";
     import WorldHi from "$lib/WorldHi.svelte";
+    
+    //  store
+    import { viewStoreState, type IViewStore } from "$lib/store";
+    import type { ActionData } from "./$types";
 
-    $: showMenu = false;
-    $: showWorld = false; // MOVE TO STORE
+    export let form: ActionData;
+
+    let viewStore: IViewStore = {
+        showSideMenu: false,
+        showWorldHi: false   
+    }
+
+    viewStoreState.subscribe((viewStoreState) => {
+        viewStore = viewStoreState
+    });
 </script>
 
-<MenuButton bind:show={showMenu}/>
+<MenuButton />
 
-{#if showMenu}
-    <SideMenu bind:show={showMenu}/>
+{#if viewStore.showSideMenu}
+    <SideMenu bind:show={viewStore.showSideMenu}/>
 {/if}
 
 <ThemeToggler />
-<WorldHi show={true} />
+<WorldHi show={viewStore.showWorldHi} form={form}/>
 <ContentSection id="intro">
     <LazyComponent this={() => import('$lib/Intro.svelte')}>
         <svelte:fragment slot="component" let:Component>
@@ -39,3 +53,4 @@
         </svelte:fragment>
     </LazyComponent>
 </ContentSection>
+<Snackbar />

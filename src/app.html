@@ -24,6 +24,11 @@
 		--BG-DARK: #121212;
 		--TEXT-DARK: white;
 		--TEXT-ON-PRIMARY-DARK: black;
+		--PRIMARY-GRADIENT: linear-gradient(
+            rgba(255, 255, 255, 0) 5px,
+            rgba(91, 143, 144, 1) 200px,
+            var(--CURRENT-BG-COLOR) 350px
+        );
 
 		/* globals */
 		--PRIMARY: #5B8F90;
@@ -31,10 +36,15 @@
 		--OVERLAY-COLOR: rgba(0, 0, 0, 0.8);
 		--NEUTRAL-COLOR: #808080;
 		--ERROR-COLOR: red;
+		--SUCCESS-COLOR: rgb(52, 168, 52);
+		--TEXT-ON-NEUTRAL: #cacaca;
+		--STATUS-TEXT-COLOR: white;
+
 		/* adjusted by preferences */
 		--CURRENT-BG-COLOR: var(--BG-LIGHT);
 		--CURRENT-TEXT-COLOR: var(--TEXT-LIGHT);
 		--CURRENT-TEXT-ON-PRIMARY: var(--TEXT-ON-PRIMARY-LIGHT);
+		
 
 
 	}
@@ -70,6 +80,11 @@
 		--CURRENT-BG-COLOR: var(--BG-DARK);
 		--CURRENT-TEXT-COLOR: var(--TEXT-DARK);
 		--CURRENT-TEXT-ON-PRIMARY: var(--TEXT-ON-PRIMARY-DARK);
+		--PRIMARY-GRADIENT: linear-gradient(
+            rgba(255, 255, 255, 0) 5px,
+            rgba(91, 143, 144, 1) 200px,
+            var(--CURRENT-BG-COLOR) 350px
+        );
 	}
 
 	/* SCROLLBAR STYLE*/
@@ -82,10 +97,11 @@
 	::-webkit-scrollbar-track {
 	background: var(--CURRENT-BG-COLOR); 
 	}
+
 	
 	/* Handle */
 	::-webkit-scrollbar-thumb {
-		background: var(--PRIMARY); 
+		background: var(--PRIMARY-GRADIENT);
 	}
 
 	/* GLOBALS */
@@ -146,9 +162,14 @@
 		animation: shake 0.5s ease-in-out 3;
 	}
 
-	.input-error {
+	input[data-valid=false] {
         border: 1px solid var(--ERROR-COLOR) !important;
+        color: var(--ERROR-COLOR) !important;
+    }
+
+	.text-invalid {
         color: var(--ERROR-COLOR);
+        font-weight: bold;
     }
 
 	a {

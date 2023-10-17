@@ -1,14 +1,22 @@
 <script lang="ts">
     import { slide, fade, blur } from "svelte/transition";
     import { quintIn } from "svelte/easing";
+    import { viewStoreState } from "./store";
+
     export let show = true;
 
     let menu: HTMLDivElement;
 
     const ANIMATION_DURATION = 500;
 
+    viewStoreState.subscribe((viewStoreState) => {
+        show = viewStoreState.showSideMenu;
+    });
+
+
     function toggleMenu() {
-        show = !show;
+        viewStoreState.update((viewStoreState) => 
+        viewStoreState = {...viewStoreState, showSideMenu: !show})
     }
 </script>
 
@@ -95,11 +103,7 @@
         width: 2px;
         height: 100%;
         background-size: 100% 350px !important;
-        background: linear-gradient(
-            rgba(255, 255, 255, 0) 50px,
-            rgba(91, 143, 144, 1) 200px,
-            var(--CURRENT-BG-COLOR) 350px
-        );
+        background: var(--PRIMARY-GRADIENT);
 
         position: absolute;
         right: 0;
