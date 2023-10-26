@@ -7,23 +7,13 @@ import { fail } from "@sveltejs/kit";
 const MESSAGE_TABLE_NAME = "messages";
 
 export const actions: Actions = {
-    getMessages: async ({ request }: RequestEvent) => {
-		try {
-            const appDatabase = new AppDatabase({ email: POCKETBASE_EMAIL, pwd: POCKETBASE_PWD});
-            const result = await appDatabase.getAll<MessageModel>("messages");
-            
-            return { isSuccess: result.isSuccess, data: result.successResult!! as MessageModel[] };
-        } catch (error) {
-            return fail(400, { isSuccess: false })
-        }
-	},
-
     createMessage: async ({ request }: RequestEvent) => {
         const formData = await request.formData();
         const data = {
             name: formData.get("name"),
             country: formData.get("country"),
-            message: formData.get("message")
+            message: formData.get("message"),
+            isRead: false
         }
         try {
             const appDatabase = new AppDatabase({ email: POCKETBASE_EMAIL, pwd: POCKETBASE_PWD});

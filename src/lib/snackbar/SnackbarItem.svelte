@@ -1,19 +1,18 @@
 <script lang="ts">
-    import { snackbarStoreState, type SnackbarProps } from "$lib/store";
+    import { type SnackbarProps, removeSnackbarState } from "$lib/store";
     import { slide } from "svelte/transition";
 
     export let pending: SnackbarProps;
     export let duration: number = 5000; //in ms
 
     const closeSnackbarItem = () => {
-        snackbarStoreState.update((store) =>
-            store = { 
-                pending: store.pending.filter(p => p != pending)
-            }
-        )
+        removeSnackbarState(pending);
     }
 
-    setTimeout(() => closeSnackbarItem(), duration)
+    // auto close if expiring
+    if (pending.isExpiring == undefined || pending.isExpiring == true) {
+        setTimeout(() => closeSnackbarItem(), duration)
+    }
 </script>
 
 <button 
@@ -49,6 +48,7 @@
         -moz-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.75);
 
         transition: translate 400ms;
+        font-size: 0.8rem;
     }
 
     .snackbar-item:hover {

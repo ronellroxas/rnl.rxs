@@ -10,7 +10,8 @@ export enum SnackbarTypeEnum {
 
 export type SnackbarProps = {
     text: string,
-    type: SnackbarTypeEnum
+    type: SnackbarTypeEnum,
+    isExpiring?: boolean
 }
 
 export interface ISnackbarStore {
@@ -20,23 +21,42 @@ export interface ISnackbarStore {
 const testItems: SnackbarProps[] = [
     {
         text: "Test primary",
-        type: SnackbarTypeEnum.PRIMARY
+        type: SnackbarTypeEnum.PRIMARY,
+        isExpiring: false
     },
     {
         text: "Test success",
-        type: SnackbarTypeEnum.SUCCESS
+        type: SnackbarTypeEnum.SUCCESS,
+        isExpiring: true
     },
     {
         text: "Test error",
-        type: SnackbarTypeEnum.ERROR
+        type: SnackbarTypeEnum.ERROR,
+        isExpiring: true
     },
     {
         text: "Test neutral",
-        type: SnackbarTypeEnum.NEUTRAL
+        type: SnackbarTypeEnum.NEUTRAL,
+        isExpiring: false
     }
 ]
 const snackbarStore: ISnackbarStore = {
     pending: []
 }
 
-export const snackbarStoreState = writable(snackbarStore); 
+export const snackbarStoreState = writable(snackbarStore);
+
+// helper methods
+export const pushSnackbarState = (snackbar: SnackbarProps) => {
+    snackbarStoreState.update((store) => store = { 
+        ...store,
+        pending: [...store.pending, snackbar]
+    });
+}
+
+export const removeSnackbarState = (snackbar: SnackbarProps) => {
+    snackbarStoreState.update((store) => store = {
+        ...store,
+        pending: store.pending.filter(p => p != snackbar)
+    });
+}

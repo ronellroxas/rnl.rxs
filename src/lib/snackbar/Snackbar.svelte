@@ -6,7 +6,7 @@
     import SnackbarItem from "./SnackbarItem.svelte";
 
     $: snackbarStore = get(snackbarStoreState);
-    $: console.log(snackbarStore.pending)
+    
     snackbarStoreState.subscribe((store) => (snackbarStore = store));
 </script>
 

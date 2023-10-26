@@ -60,6 +60,7 @@ export class AppDatabase {
             const query = await this.db.collection(table).getList<T>(page, perPage, filter);
             return DatabaseResult.setSuccess(query.items);
         } catch (error) {
+            console.log(error);
             if (typeof error == typeof Error) {
                 return DatabaseResult.setFail((error as Error).message);
             }
@@ -85,6 +86,26 @@ export class AppDatabase {
 
             // TODO: check other error types
             return DatabaseResult.setFail("Unknown error occured while Inserting new message.");
+        }
+    }
+
+    async update<T extends BaseModel>(
+        table: string,
+        id: string,
+        data: { [key: string]: any}
+    ) {
+        try {
+            const query = await this.db.collection(table).update<T>(id, data);
+
+            return DatabaseResult.setSuccess(query);
+        } catch (error) {
+            console.log(error);
+            if (typeof error == typeof Error) {
+                return DatabaseResult.setFail((error as Error).message);
+            }
+
+            // TODO: check other error types
+            return DatabaseResult.setFail("Unknown error occured while updating message " + id);
         }
     }
 }
