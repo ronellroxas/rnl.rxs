@@ -27,12 +27,12 @@ const testItems: SnackbarProps[] = [
     {
         text: "Test success",
         type: SnackbarTypeEnum.SUCCESS,
-        isExpiring: true
+        isExpiring: false
     },
     {
         text: "Test error",
         type: SnackbarTypeEnum.ERROR,
-        isExpiring: true
+        isExpiring: false
     },
     {
         text: "Test neutral",

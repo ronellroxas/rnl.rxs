@@ -14,7 +14,7 @@
     const HIGHLIGHTED_WORDS = `honorable mention award de la salle university manila 
             2023 computer science major software technology 
             bulacan ph full-stack developer development machine 
-            learning data science devops platforms mobile web`
+            learning data science devops platforms mobile web engineer`
         .split(" ")
         .map(word => word.toLowerCase());
 

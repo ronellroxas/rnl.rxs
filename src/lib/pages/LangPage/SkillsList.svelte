@@ -13,7 +13,6 @@
     $: CHAR_ANIMATION_DURATION = 2000;
     $: KEYWORD_SHOW_DELAY = Math.floor(CHAR_ANIMATION_DURATION/keywords.length);
 
-    $: console.log(CHAR_ANIMATION_DURATION, KEYWORD_SHOW_DELAY)
     function getRandomLetter() {
         return LETTERS.charAt(Math.floor(Math.random() * LETTERS.length));
     }
@@ -161,11 +160,9 @@
 <style>
     .skills-list {
         display: grid;
-        grid-template-rows: repeat(12, 1fr);
+        grid-template-rows: repeat(15, 1fr);
         grid-template-columns: repeat(auto-fit, minmax(1em, 1fr));
-        min-width: 100%;
-        max-width: 100%;
-        width: 100%;
+        width: 95%;
         color: var(--TEXT-ON-NEUTRAL);
 
         text-align: center;

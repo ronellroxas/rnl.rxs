@@ -14,9 +14,9 @@
     let inputRef: HTMLInputElement;
     let limitRef: HTMLSpanElement;
     let suggestionsRef: HTMLDivElement;
+    let showSuggestions = false;
 
     $: optionalText = optional ? " (optional)" : "";
-    $: showSuggestions = value.length > 0;
     $: filteredCountries = suggestions?.filter(sugg => sugg.toLowerCase().includes(value.toLowerCase()));
     $: currentInputLength = 0;
 
@@ -82,6 +82,7 @@
         bind:this={inputRef}
         class="text-input {secret ? "secret-input" : ""}" 
         type="text" 
+        on:focus={() => showSuggestions = true}
         on:blur={closeSuggestions}
         placeholder={placeholder + optionalText}
         bind:value={value}

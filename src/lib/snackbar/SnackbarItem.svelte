@@ -1,12 +1,17 @@
 <script lang="ts">
-    import { type SnackbarProps, removeSnackbarState } from "$lib/store";
+    import type { SnackbarProps } from "$lib/store";    
     import { slide } from "svelte/transition";
-
+    
     export let pending: SnackbarProps;
     export let duration: number = 5000; //in ms
 
+    let closed: Boolean = false;
+
     const closeSnackbarItem = () => {
-        removeSnackbarState(pending);
+        closed = true;
+        // setTimeout(() => {
+        //     removeSnackbarState(pending);
+        // }, 1000)
     }
 
     // auto close if expiring
@@ -15,15 +20,17 @@
     }
 </script>
 
+{#if !closed}
 <button 
-        class="snackbar-item" 
-        data-type={pending.type}
-        on:click={() => closeSnackbarItem()}
-        transition:slide={{ axis: "y"}}
-    >
+    class="snackbar-item" 
+    data-type={pending.type}
+    on:click={() => closeSnackbarItem()}
+    transition:slide={{ axis: "y"}}
+>
     {pending.text}
     <i class="mi mi-close icon snackbar-icon" />
 </button>
+{/if}
 
 <style>
     .snackbar-item {

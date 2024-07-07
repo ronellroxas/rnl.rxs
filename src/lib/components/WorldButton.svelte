@@ -9,6 +9,14 @@
     $: isScrolled = false;
     $: showTooltip = false;
 
+    setTimeout(() => {
+        showTooltip = true;
+
+        setTimeout(() => {
+            showTooltip = false;
+        }, 2000);
+    }, 2500);
+    
     function toggleTooltip() {
         showTooltip = !showTooltip;
     }
@@ -103,6 +111,7 @@
         font-size: 1rem;
         background: var(--CURRENT-BG-COLOR);
         color: var(--CURRENT-TEXT-COLOR);
+        transition: background-color var(--BG-ANIMATION-DURATION);
     }
 
     .tooltip-hi {

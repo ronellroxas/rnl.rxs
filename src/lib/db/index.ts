@@ -1,3 +1,12 @@
+import { type MessageModel } from "./MessageModel";
 import { AppDatabase } from "./pocketbase";
-import type { MessageModel } from "./MessageModel";
-export { AppDatabase, MessageModel };
+import { ProjectLanguages, type ProjectModel, ProjectPurpose, ProjectType } from "./ProjectModel";
+
+export {
+    AppDatabase,
+    MessageModel,
+    ProjectLanguages,
+    ProjectType,
+    ProjectPurpose,
+    ProjectModel,
+};

@@ -2,8 +2,9 @@
     import ContentSection from "$lib/components/ContentSection.svelte";
     import { snackbarStoreState, type SnackbarProps, SnackbarTypeEnum } from "$lib/store";
     import type { ActionData, PageData } from "./$types";
-    import Login from "./components/login.svelte";
-    import Table from "./components/table.svelte";
+    import Login from "./components/Login.svelte";
+    import ProjectManager from "./components/ProjectManager.svelte";
+    import MessageTable from "./components/MessageTable.svelte";
 
     export let form: ActionData | undefined;
     export let data: PageData;
@@ -57,8 +58,10 @@
 <ContentSection id="">
     <div class="admin-notes">
     {#if isLoggedIn}
-        <span class="content-banner">Welcome Back, Ronell!</span>
-        <Table />
+        <span class="content-banner">Messages</span>
+        <MessageTable />
+        <span class="content-banner">Project Management</span>
+        <ProjectManager />
     {:else}
         <span class="content-banner">Admin stuff</span>
         <span>Hi! This page is meant for me only (Ronell) and doesn't really do anything without a passkey.</span>

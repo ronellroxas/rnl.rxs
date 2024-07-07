@@ -3,7 +3,7 @@
     import IntroSlidingPreviewComponent from "./IntroSlidingPreviewComponent.svelte";
     import WorldButton from "$lib/components/WorldButton.svelte";
 
-    let desc = "This is a personal portfolio of Ronell Roxas containing experiences, knowledge, hobbies, and other contact information.";
+    let desc = "This is a personal portfolio of Ronell Roxas containing experiences, knowledge, hobbies, and other contact information. Enjoy browsing and say Hi by clicking the globe anytime!";
     let words = desc.split(" ");
 </script>
 
@@ -37,5 +37,9 @@
     
         max-width: 100vw;
         overflow: visible;
+    }
+
+    .content-desc {
+        padding: 0 1rem;
     }
 </style>

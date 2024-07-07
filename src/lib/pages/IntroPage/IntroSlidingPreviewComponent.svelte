@@ -50,8 +50,9 @@
             <PreviewContainer onClickHandler={() => scroll("lang-fram")}>
                 <span>Languages and Frameworks</span>
             </PreviewContainer>
-            <PreviewContainer><span>Experiences</span></PreviewContainer>
-            <PreviewContainer><span>Personal Work</span></PreviewContainer>
+            <PreviewContainer onClickHandler={() => scroll("projects")}>
+                <span>Projects</span>
+            </PreviewContainer>
             <PreviewContainer><span>Contacts</span></PreviewContainer>
         </div>
     {/each}

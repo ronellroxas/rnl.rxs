@@ -1,10 +1,7 @@
-import { POCKETBASE_EMAIL, POCKETBASE_PWD } from "$env/static/private";
-import { AppDatabase, type MessageModel } from "$lib/db";
 import { fail, json } from "@sveltejs/kit";
 import type { RequestEvent } from "./$types";
-import { filter } from "d3";
-
-const appDatabase = new AppDatabase({ email: POCKETBASE_EMAIL, pwd: POCKETBASE_PWD});
+import { appDatabase } from "$lib/server/appDatabase";
+import { MessageModel } from "$lib/db/MessageModel";
 
 export async function GET({url}: RequestEvent) {
     const orderBy = url.searchParams.get("orderby") || undefined;

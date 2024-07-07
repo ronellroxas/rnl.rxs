@@ -13,6 +13,7 @@
         align-items: center;
         width: 100vw;
         min-height: 100vh;
+        max-height: 100vh;
     }
 
     .section-invert {

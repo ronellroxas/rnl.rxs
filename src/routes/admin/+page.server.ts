@@ -1,7 +1,5 @@
-import { ADMIN_PASSKEY, POCKETBASE_EMAIL, POCKETBASE_PWD } from "$env/static/private";
-import { AppDatabase, type MessageModel } from "$lib/db";
+import { ADMIN_PASSKEY } from "$env/static/private";
 import { fail, type Actions, type RequestEvent } from "@sveltejs/kit";
-import type { PageServerLoad } from "../$types";
 
 export const actions: Actions = {    
     login: async ({ request }: RequestEvent) => {

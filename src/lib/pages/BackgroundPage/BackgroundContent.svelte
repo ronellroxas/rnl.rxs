@@ -3,7 +3,7 @@
     import AnimatedDescWord from "../../components/AnimatedDescWord.svelte";
     import { bounceOut } from "svelte/easing";
     let paragraphs = [
-        "I am from Bulacan PH! I am an aspiring Full-Stack Developer.",
+        "I am from Bulacan PH! I am an aspiring Full-Stack Engineer.",
         "I love technology including different fields like Development, Machine Learning, Data Science, and DevOps.",
         "I also love working on various platforms like mobile and web development.",
         "I graduated with Honorable Mention Award from De La Salle University Manila on 2023 with a Bachelor's Degree in Computer Science Major in Software Technology.",

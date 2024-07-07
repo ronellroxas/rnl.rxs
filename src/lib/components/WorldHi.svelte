@@ -19,7 +19,6 @@
     import { fade, scale } from "svelte/transition";
     import { enhance } from "$app/forms";
     import type { ActionData } from "../../routes/$types";
-    import CountryGraph from "../graphs/CountryGraph.svelte";
     
 
     $: nameValue = "";
@@ -101,7 +100,7 @@
                     One of the best things about developing applications is that
                     I know my app can reach anywhere in the world! Because of
                     this, I've always wondered where people are viewing my
-                    applications are from! So say Hi! I would love to see which
+                    apps from! So say Hi! I would love to see which
                     parts of the world I reach! Or feel free to reach out to me
                     anywhere in my
                     <a href="#">socials.</a> Or just report a bug with the app (lol).
@@ -147,12 +146,6 @@
                     bind:countryNames
                     width={width / 2}
                 />
-                {#if form?.data}
-                    <CountryGraph 
-                        data={form?.data}
-                        width={width/2}    
-                    />
-                {/if}
             </div>
         </div>
     </div>

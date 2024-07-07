@@ -40,6 +40,7 @@
 		--SUCCESS-COLOR: rgb(52, 168, 52);
 		--TEXT-ON-NEUTRAL: #cacaca;
 		--STATUS-TEXT-COLOR: white;
+		--BG-ANIMATION-DURATION: 500ms;
 
 		/* adjusted by preferences */
 		--CURRENT-BG-COLOR: var(--BG-LIGHT);
@@ -69,7 +70,7 @@
 		background-color: var(--BG-LIGHT);
 		color: var(--TEXT-LIGHT);
 		
-		transition: background-color 0.5s;
+		transition: background-color var(--BG-ANIMATION-DURATION);
 		
 	}
 
@@ -99,13 +100,14 @@
 
 	/* Track */
 	::-webkit-scrollbar-track {
-	background: var(--CURRENT-BG-COLOR); 
+		background: var(--CURRENT-BG-COLOR); 
 	}
 
 	
 	/* Handle */
 	::-webkit-scrollbar-thumb {
 		background: var(--PRIMARY-GRADIENT);
+		border-radius: 1rem;
 	}
 
 	/* GLOBALS */
@@ -126,6 +128,7 @@
         color: var(--PRIMARY);
         font-size: min(4em, 5vw);
         animation: banner-anim 0.8s ease-in-out 1;
+		z-index: 1;
     }
 
 	.content-desc {
@@ -242,4 +245,14 @@
         color: var(--CURRENT-TEXT-ON-PRIMARY) !important;
         cursor: pointer;
 	}
+
+	.filter-tag-selected {
+		background-color: var(--PRIMARY);
+        color: var(--CURRENT-TEXT-ON-PRIMARY) !important;
+	}
+
+	.filter-tag-selected:hover {
+        background-color: transparent !important;
+        color: var(--PRIMARY) !important;
+    }
 </style>
